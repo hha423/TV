@@ -1,0 +1,16 @@
+name: Sync with Upstream
+on:
+  schedule:
+    cron: "0 0 * * *"  # 每天凌晨0点执行
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    steps:
+    - checkout: @actions/checkout@v3
+    - sync: @aormsby/Fork-Sync-With-Upstream-action@v3.4
+      with:
+        target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+        upstream_sync_repo: 原始仓库用户名/原始仓库名
+        upstream_sync_branch: 主分支名称（如 main 或 master）
+        target_sync_branch: 本地主分支名称（如 main）
+``` ‌:ml-citation{ref="1,2" data="citationList"}
